@@ -38,6 +38,7 @@ big:x:1000:1000::/home/big:/bin/sh
 # 7. login 시 사용할 쉘
 
 # big 사용자의 쉘 설정을 변경
+big:x:1000:1000::/home/big:/bin/sh => big:x:1000:1000::/home/big:/bin/bash
 # /etc/passwd 파일을 수정
 vim /etc/passwd
 #i를 사용해 입력모드로 진입
@@ -60,7 +61,9 @@ big     ALL=(ALL:ALL) ALL
 
 
 # 도커허브에 push
+# 도커 로그인을 하지 않았다면 docker login 명령어를 통해 로그인 진행
 docker commit azimemory/de_base:1.1
+docker push azimemory/de_base:1.1
 
 
 

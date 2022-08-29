@@ -15,5 +15,7 @@ export JAVA_HOME=/home/big/java
 export PATH=$PATH:$JAVA_HOME/bin
 
 # 저장
+
+# ~/.bashrc 실행
 source ~/.bashrc
 
