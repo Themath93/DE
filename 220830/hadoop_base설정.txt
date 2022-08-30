@@ -6,6 +6,7 @@ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 #하둡설치
 wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz
 tar -xvzf hadoop-3.3.4.tar.gz 
+ln -s hadoop-3.3.4.tar.gz hadoop
 
 #hadoop-env.sh 파일 수정
 export JAVA_HOME=/home/big/java
@@ -44,7 +45,6 @@ docker push azimemory/hadoop_base:1.0
 vim .vimrc
 colorscheme pablo
 #저장
-
 
 
 
