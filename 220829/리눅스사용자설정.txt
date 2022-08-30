@@ -57,7 +57,7 @@ passwd big
 
 # sudoers 파일 수정
 vim /etc/sudoers
-big     ALL=(ALL:ALL) ALL
+'big    ALL=NOPASSWD: ALL'
 
 
 # 도커허브에 push
