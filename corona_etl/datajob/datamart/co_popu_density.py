@@ -1,5 +1,5 @@
-from infra.jdbc import DataWarehouse, find_data, save_data
 from pyspark.sql.functions import col, ceil
+from infra.jdbc import DataMart, DataWarehouse, find_data, save_data
 class CoPopuDensity:
 
     @classmethod
@@ -7,7 +7,7 @@ class CoPopuDensity:
         popu = find_data(DataWarehouse, 'loc')
         patients = find_data(DataWarehouse, 'corona_patients')
         pop_patients = cls.__generate_data(popu, patients)
-        save_data(DataWarehouse, pop_patients, 'CO_POPU_DENSITY')
+        save_data(DataMart, pop_patients, 'CO_POPU_DENSITY')
 
     @classmethod
     def __generate_data(cls, popu, patients):

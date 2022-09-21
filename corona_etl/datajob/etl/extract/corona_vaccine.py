@@ -3,7 +3,6 @@ import json
 from bs4 import BeautifulSoup
 from infra.util import cal_std_day, execute_rest_api
 from infra.hdfs_client import get_client
-from infra.logger import get_logger
 
 
 class CoronaVaccineExtractor:

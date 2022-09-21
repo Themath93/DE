@@ -7,48 +7,49 @@ from airflow import DAG
 # Operators; we need this to operate!
 from airflow.operators.bash import BashOperator
 with DAG(
-    'tutorial',
+    'corona_etl',
     # These args will get passed on to each operator
     # You can override them on a per-task basis during operator initialization
     default_args={
         'depends_on_past': False,
-        'email': ['airflow@example.com'],
+        'email': ['azimemory@gmail.com'],
         'email_on_failure': False,
         'email_on_retry': False,
-        'retries': 1,
-        'retry_delay': timedelta(minutes=5),
-        # 'queue': 'bash_queue',
-        # 'pool': 'backfill',
-        # 'priority_weight': 10,
-        # 'end_date': datetime(2016, 1, 1),
-        # 'wait_for_downstream': False,
-        # 'sla': timedelta(hours=2),
-        # 'execution_timeout': timedelta(seconds=300),
-        # 'on_failure_callback': some_function,
-        # 'on_success_callback': some_other_function,
-        # 'on_retry_callback': another_function,
-        # 'sla_miss_callback': yet_another_function,
-        # 'trigger_rule': 'all_success'
+        'retries': 2,
+        'retry_delay': timedelta(minutes=3),
     },
-    description='A simple tutorial DAG',
+    description='Corona ETL Project',
     schedule=timedelta(days=1),
-    start_date=datetime(2021, 1, 1),
+    start_date=datetime(2022, 9, 20, 4, 30),
     catchup=False,
-    tags=['example'],
+    tags=['coron_etl'],
 ) as dag:
 
     # t1, t2 and t3 are examples of tasks created by instantiating operators
     t1 = BashOperator(
-        task_id='print_date',
-        bash_command='date',
+        task_id='extract_corona_api',
+        cwd='/home/big/study/corona_etl',
+        bash_command='python3 main.py extract corona_api',
     )
 
     t2 = BashOperator(
-        task_id='sleep',
-        depends_on_past=False,
-        bash_command='sleep 5',
-        retries=3,
+        task_id='extract_corona_vaccine',
+        cwd='/home/big/study/corona_etl',
+        bash_command='python3 main.py extract corona_vaccine',
     )
+
+    t3 = BashOperator(
+        task_id='transform_execute',
+        cwd='/home/big/study/corona_etl',
+        bash_command='python3 main.py transform execute',
+    )
+
+    t4 = BashOperator(
+        task_id='datamart_execute',
+        cwd='/home/big/study/corona_etl',
+        bash_command='python3 main.py datamart execute',
+    )
+
     t1.doc_md = dedent(
         """\
     #### Task Documentation
@@ -73,10 +74,4 @@ with DAG(
     """
     )
 
-    t3 = BashOperator(
-        task_id='templated',
-        depends_on_past=False,
-        bash_command=templated_command,
-    )
-
-    t1 >> [t2, t3]
+    [t1, t2] >> t3 >> t4

@@ -1,9 +1,7 @@
-from infra.jdbc import DataMart, DataWarehouse, find_data, save_data
 from pyspark.sql.functions import col, ceil
+from infra.jdbc import DataMart, DataWarehouse, find_data, save_data
 
 class CoVaccine:
-
-    
     @classmethod
     def save(cls):
         vaccine = find_data(DataWarehouse, 'CORONA_VACCINE')
