@@ -3,7 +3,6 @@ from infra.logger import get_logger
 from infra.util import cal_std_day, execute_rest_api
 from infra.hdfs_client import get_client
 
-
 class CoronaApiExtractor:
     # 클래스 = 데이터 + 함수
     # classmethod , staticmethod
@@ -18,7 +17,7 @@ class CoronaApiExtractor:
     FILE_DIR = '/corona_data/patient/'
 
     @classmethod
-    def extract_data(cls, befor_cnt=1):
+    def extract_data(cls, befor_cnt=2):
 
         for i in range(1, befor_cnt+1):
 

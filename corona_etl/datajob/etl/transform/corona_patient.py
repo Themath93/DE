@@ -4,13 +4,16 @@ from infra.util import cal_std_day
 from pyspark.sql.functions import col
 
 class CoronaPatientTransformer:
-    path = '/corona_data/patient/corona_patient_' + cal_std_day(1) + '.json'
-    co_patient_json = get_spark_session().read.json(path, encoding='UTF-8')
-
+    
     @classmethod
     def transform(cls):
+
+        path = '/corona_data/patient/corona_patient_' + cal_std_day(1) + '.json'
+        co_patient_json = get_spark_session().read.json(path, encoding='UTF-8')
+        co_patient_json = get_spark_session().read.json(path, encoding='UTF-8')
         data = []
-        for r1 in cls.co_patient_json.select('items').toLocalIterator():
+
+        for r1 in co_patient_json.select('items').toLocalIterator():
             if not r1.items:
                 continue
             for r2 in r1.items:
