@@ -9,11 +9,13 @@ class CoronaPatientTransformer:
     def transform(cls):
 
         path = '/corona_data/patient/corona_patient_' + cal_std_day(1) + '.json'
-        co_patient_json = get_spark_session().read.json(path, encoding='UTF-8')
+        print(path)
         co_patient_json = get_spark_session().read.json(path, encoding='UTF-8')
         data = []
 
         for r1 in co_patient_json.select('items').toLocalIterator():
+            print('hi??????')
+
             if not r1.items:
                 continue
             for r2 in r1.items:

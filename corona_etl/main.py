@@ -1,4 +1,5 @@
 import sys
+from datajob.datamart.co_facility import CoFacility
 from datajob.datamart.co_popu_density import CoPopuDensity
 from datajob.datamart.co_vaccine import CoVaccine
 from datajob.etl.extract.corona_api import CoronaApiExtractor
@@ -13,21 +14,22 @@ def transfrom_execute():
 def datamart_execute():
     CoPopuDensity.save()
     CoVaccine.save()
+    CoFacility.save()
 
 works = {
-    'extract':{
-        'corona_api': CoronaApiExtractor.extract_data
-        ,'corona_vaccine':CoronaVaccineExtractor.extract_data
-    }
-    ,'transform':{
-        'execute':transfrom_execute
-        ,'corona_patient':CoronaPatientTransformer.transform
-        ,'corona_vaccine':CoronaVaccineTransformer.transform
-    }
-    ,'datamart':{
-        'execute':datamart_execute
-        ,'co_popu_density':CoPopuDensity.save
-        ,'co_vaccine':CoVaccine.save
+    'extract': {
+        'corona_api': CoronaApiExtractor.extract_data,
+        'corona_vaccine': CoronaVaccineExtractor.extract_data
+    },
+    'transform': {
+        'execute':transfrom_execute,
+        'corona_patient': CoronaPatientTransformer.transform,
+        'corona_vaccine': CoronaVaccineTransformer.transform
+    },
+    'datamart': {
+        'execute':datamart_execute,
+        'co_popu_density':CoPopuDensity.save,
+        'co_vaccine':CoVaccine.save
     }
 }
 

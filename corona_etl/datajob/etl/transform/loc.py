@@ -16,9 +16,9 @@ class LocTransformer:
                     , header=True)
 
         area_pop = AREA.join(POPU, on='loc')
-        area_pop = area_pop.select(col('loc').alias('LOC')
-                                        , col('area').alias('AREA')
-                                        ,col('total').alias('POPULATION')
+        area_pop = area_pop.select(col('loc').alias('LOC'),
+                                        col('area').alias('AREA'),
+                                        col('total').alias('POPULATION')
                                 )
 
         fac_cnt = FACILITY.groupBy(col('광역').alias('LOC')).agg(count('*').alias('FACILITY_CNT'))

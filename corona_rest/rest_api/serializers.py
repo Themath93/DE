@@ -1,10 +1,12 @@
 from rest_framework import serializers
-from rest_api.models import *
+from rest_api.models import CoFacility, CoPopuDensity, CoVaccine, CoWeekday
+
 
 class CoFacilitySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CoFacility
         fields = ['loc', 'fac_popu', 'qur_rate', 'std_day']
+
 
 class CoPopuDensitySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

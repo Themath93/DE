@@ -1,5 +1,7 @@
 from pyspark.sql.functions import col, ceil
 from infra.jdbc import DataMart, DataWarehouse, find_data, save_data
+
+
 class CoPopuDensity:
 
     @classmethod
