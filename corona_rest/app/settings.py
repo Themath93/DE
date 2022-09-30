@@ -8,9 +8,9 @@ LOGOUT_REDIRECT_URL = '/'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': 'decorona_high', # tnsnames.ora 파일에 등록된 NAME을 등록
-        'USER': 'dm_de', 
-        'PASSWORD': '123qwe!@#QWE', #Please provide the db password here
+        'NAME': 'decorona_high',
+        'USER': 'dm_de',
+        'PASSWORD': '123qwe!@#QWE',
     }
 }
 
@@ -41,10 +41,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-4lv4d0)m9%tyvjx09=gf4z2ca#8#t*!o5_ql5tl=pc09f1!o_k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:5500',
+]
 
 # Application definition
 
@@ -60,6 +63,7 @@ INSTALLED_APPS = [
     'account',
     'rest_framework.authtoken',
     'drf_yasg',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -70,7 +74,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'app.middleware.LogMiddleware'
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    #'app.middleware.LogMiddleware'
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -96,7 +102,6 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -124,8 +129,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

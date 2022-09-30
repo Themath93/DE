@@ -5,7 +5,7 @@ from infra.util import cal_std_day
 
 class CoronaVaccineTransformer:
     file_name = '/corona_data/vaccine/corona_vaccine_' + cal_std_day(1) + '.json'
-
+    
     @classmethod
     def transform(cls):
         vaccine = get_spark_session().read.json(cls.file_name, multiLine=True)

@@ -44,7 +44,8 @@ class CoronaApiExtractor:
             ,'pageNo':'1'
             ,'numOfRows':'500'
             ,'apiType':'JSON'
-            ,'std_day':cal_std_day(befor_day)
+            #,'std_day':cal_std_day(befor_day)
+            ,'std_day':'2022-09-23'
         }
 
     @classmethod

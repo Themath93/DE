@@ -16,6 +16,6 @@ class CoFacility:
 
         co_facility = patients.join(fac_popu, on='LOC') \
                     .select('LOC', 'FAC_POPU', 'QUR_RATE', 'STD_DAY') \
-                    .where(col('std_day') == cal_std_day(1))
+                    .where(col('std_day') == '2022-09-23')
 
         save_data(DataMart, co_facility, 'CO_FACILITY')

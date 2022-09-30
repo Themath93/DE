@@ -9,6 +9,7 @@ class CoronaVaccineExtractor:
 
     FILE_DIR = '/corona_data/vaccine/'
     FILE_NAME = 'corona_vaccine_' + cal_std_day(1) + '.json'
+    #FILE_NAME = 'corona_vaccine_' + '2022-09-23' + '.json'
     URL = 'https://ncv.kdca.go.kr/mainStatus.es?mid=a11702000000'
 
     @classmethod

@@ -23,7 +23,8 @@ class CoVaccine:
                         ,ceil(col('v3')/col('population') * 100).alias('V3TH_RATE')
                         ,ceil(col('v4')/col('population') * 100).alias('V4TH_RATE')
                         ,'QUR_RATE'
-                    )
+                    ) \
+                .where(col('std_day') == '2022-09-23')
                     
         return vac_rate
 

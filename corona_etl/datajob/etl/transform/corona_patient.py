@@ -8,7 +8,8 @@ class CoronaPatientTransformer:
     @classmethod
     def transform(cls):
 
-        path = '/corona_data/patient/corona_patient_' + cal_std_day(1) + '.json'
+        #path = '/corona_data/patient/corona_patient_' + cal_std_day(1) + '.json'.
+        path = '/corona_data/patient/corona_patient_' + '2022-09-23' + '.json'
         print(path)
         co_patient_json = get_spark_session().read.json(path, encoding='UTF-8')
         data = []

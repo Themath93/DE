@@ -1,5 +1,8 @@
 from django.urls import include, path
+from django.conf.urls.static import static
+from django.conf import settings
 from rest_framework import routers
+from app import settings
 from rest_api import views as rest_view
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
@@ -27,5 +30,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('account/', include('account.urls')),
     path('doc/', schema_view.with_ui('swagger', cache_timeout=0), name='doc'),
-
 ]
+
+urlpatterns += static(settings.STATIC_ROOT, document_root=settings.STATIC_ROOT)

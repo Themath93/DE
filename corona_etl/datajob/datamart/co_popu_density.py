@@ -14,7 +14,7 @@ class CoPopuDensity:
     @classmethod
     def __generate_data(cls, popu, patients):
         pop_patients = popu.join(patients, on='loc') \
-                    .select('loc'
+                        .select('loc'
                            ,ceil(col('population')/col('area')).alias('POPU_DENSITY')
                             ,'qur_rate'
                             ,'std_day') \
